@@ -14,3 +14,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@layer {
+  .todo-card {
+    @apply w-11/12 lg:w-auto flex-1 p-1 border-none text-xl focus:outline-none;
+  }
+
+  .icons {
+    @apply ml-3 text-2xl cursor-pointer;
+  }
+}

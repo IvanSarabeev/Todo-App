@@ -6,7 +6,7 @@ interface Props {
   handleAdd: (e: React.FormEvent) => void;
 }
 
-const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => {
+const InputField = ({ todo, setTodo, handleAdd }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -23,7 +23,7 @@ const InputField: React.FC<Props> = ({ todo, setTodo, handleAdd }) => {
         ref={inputRef}
         placeholder="Enter a task"
         onChange={(e) => setTodo(e.target.value)}
-        className="w-auto rounded-full py-5 px-7 text-2xl border-none transition-all shadow-md focus:shadow-inner focus:outline-none"
+        className="w-full relative rounded-full py-5 px-7 text-2xl border-none transition-all shadow-md focus:shadow-2xl focus:outline-none"
       />
       <button
         type="submit"

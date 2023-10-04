@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import InputField from "./components/Input/InputField";
-import { Todo } from "./model";
+import { Todo } from "./model/model";
 import TodoList from "./components/TodoList/TodoList";
 
 const App: React.FC = () => {
@@ -17,7 +17,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <main className="h-screen w-screen flex flex-col items-center bg-[#2f74c0]">
+    <main className="h-screen w-screen flex flex-col items-center bg-gradient-to-tr from-[#2f74c0] via-slate-700 to-sky-500">
       <h1 className="capitalize font-serif font-semibold text-3xl lg:text-4xl text-center my-4 lg:my-8 mx-auto z-10">
         Taskify
       </h1>
