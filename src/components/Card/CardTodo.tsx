@@ -1,19 +1,26 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Todo } from "../../model/model";
-import { MdOutlineFileDownloadDone } from "react-icons/md";
-import { AiFillEdit, AiTwotoneDelete } from "react-icons/ai";
+import { Todo } from "../../models/model";
+import { GiCheckMark } from "react-icons/gi";
+import { FaEdit } from "react-icons/fa";
+import { AiTwotoneDelete } from "react-icons/ai";
+import { Draggable } from "react-beautiful-dnd";
 
 type Props = {
   todo: Todo;
   todos: Todo[];
+  index: number;
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 };
 
-const CardTodo = ({ todo, todos, setTodos }: Props) => {
+const CardTodo = ({ todo, todos, index, setTodos }: Props) => {
   const [edit, setEdit] = useState<boolean>(false);
   const [editTodo, setEditTodo] = useState<string>(todo.todo);
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [edit]);
 
   const handleStatus = () => {
     if (!edit && !todo.isDone) {
@@ -42,47 +49,51 @@ const CardTodo = ({ todo, todos, setTodos }: Props) => {
     setTodos(todos.filter((t) => t.id !== id));
   };
 
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, [edit]);
-
   return (
-    <form
-      className="w-10/12 md:w-8/12 lg:w-4/12 flex rounded-md p-5 mt-4 transition-all duration-200 bg-todo-box hover:scale-105 hover:shadow-xl"
-      onSubmit={(e) => handleEdit(e, todo.id)}
-    >
-      {edit ? (
-        <input
-          ref={inputRef}
-          value={editTodo}
-          onChange={(e) => setEditTodo(e.target.value)}
-          className="flex-1 p-1 text-xl  border-none focus:outline-none"
-        />
-      ) : todo.isDone ? (
-        <span className="todo-card underline underline-offset-2">
-          {todo.todo}
-        </span>
-      ) : (
-        <span className="todo-card">{todo.todo}</span>
+    <Draggable draggableId={todo.id.toString()} index={index}>
+      {(provided, snapshot) => (
+        <form
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+          onSubmit={(e) => handleEdit(e, todo.id)}
+          className={`${snapshot.isDragging ? "shadow-lg" : ""}
+          w-auto flex items-center rounded-md p-5 mt-4 transition-all duration-200 bg-todo-box hover:scale-[1.03] hover:shadow-2xl`}
+        >
+          {edit ? (
+            <input
+              ref={inputRef}
+              value={editTodo}
+              onChange={(e) => setEditTodo(e.target.value)}
+              className="flex-1 p-1 text-xl  border-none focus:outline-none"
+            />
+          ) : todo.isDone ? (
+            <s className="todo-card underline underline-offset-2">
+              {todo.todo}
+            </s>
+          ) : (
+            <span className="todo-card">{todo.todo}</span>
+          )}
+          <div className="flex items-center">
+            <span className="icons">
+              <button type="button" onClick={() => handleComplete(todo.id)}>
+                <GiCheckMark className="h-5 w-5" />
+              </button>
+            </span>
+            <span className="icons">
+              <button type="button" onClick={handleStatus}>
+                <FaEdit className="h-5 w-5" />
+              </button>
+            </span>
+            <span className="icons">
+              <button type="button" onClick={() => handleRemove(todo.id)}>
+                <AiTwotoneDelete />
+              </button>
+            </span>
+          </div>
+        </form>
       )}
-      <div className="flex items-center">
-        <span className="icons">
-          <button type="button" onClick={() => handleComplete(todo.id)}>
-            <MdOutlineFileDownloadDone />
-          </button>
-        </span>
-        <span className="icons">
-          <button type="button" onClick={() => handleStatus}>
-            <AiFillEdit />
-          </button>
-        </span>
-        <span className="icons">
-          <button type="button" onClick={() => handleRemove(todo.id)}>
-            <AiTwotoneDelete />
-          </button>
-        </span>
-      </div>
-    </form>
+    </Draggable>
   );
 };
 
