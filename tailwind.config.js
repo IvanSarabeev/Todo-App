@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'todo-box': "url('https://img.freepik.com/free-photo/crumpled-yellow-paper-background-close-up_60487-2390.jpg?size=626&ext=jpg')",
+        'todo-box': "url('https://img.freepik.com/free-vector/abstract-black-friday-sale-promo-banner-grunge-style_1017-40684.jpg?size=626&ext=jpg&ga=GA1.1.1966780644.1688574031&semt=ais')",
       }
     },
   },

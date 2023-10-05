@@ -62,8 +62,8 @@ const App: React.FC = () => {
 
   return (
     <DragDropContext onDragEnd={handleDrag}>
-      <main className="h-screen w-screen flex flex-col items-center bg-gradient-to-tr from-[#2f74c0] via-slate-700 to-sky-500">
-        <h1 className="uppercase font-serif font-semibold text-3xl lg:text-4xl text-center my-4 lg:my-8 mx-auto z-10">
+      <main className="h-screen w-screen flex flex-col items-center bg-gradient-to-tr from-indigo-700 from-10% via-sky-900 via-30% to-teal-400 to-90%">
+        <h1 className="font-semibold text-3xl lg:text-4xl text-center my-4 lg:my-8 mx-auto z-10">
           Taskify
         </h1>
         <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />

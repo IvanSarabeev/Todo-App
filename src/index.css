@@ -17,14 +17,14 @@
 
 @layer {
   .todo-card {
-    @apply w-11/12 lg:w-auto flex-1 p-1 border-none text-xl focus:outline-none;
-  }
-
-  .icons {
-    @apply ml-3 text-2xl cursor-pointer;
+    @apply w-11/12 lg:w-auto text-lg flex-1 p-1 border-none md:text-xl focus:outline-none;
   }
 
   .todo-headings {
-    @apply font-sans font-semibold;
+    @apply font-sans font-semibold flex gap-x-2 items-center justify-start;
+  }
+
+  .icons {
+    @apply flex gap-x-2 cursor-pointer;
   }
 }

@@ -2,6 +2,8 @@ import React from "react";
 import { Todo } from "../../models/model";
 import CardTodo from "../Card/CardTodo";
 import { Droppable } from "react-beautiful-dnd";
+import { FaTasks } from "react-icons/fa";
+import { BsFillBookmarkCheckFill } from "react-icons/bs";
 
 interface Props {
   todos: Array<Todo>;
@@ -24,10 +26,10 @@ const TodoList = ({
             ref={provided.innerRef}
             {...provided.droppableProps}
             className={`${snapshot.isDraggingOver ? "bg-[#ddecff]" : ""}
-            w-full flex flex-col p-4 rounded-lg bg-[#32c3cd]`}
+            w-full flex flex-col p-4 rounded-lg bg-[#23d2de]`}
           >
-            <h2 className="todo-headings sm:text-xl md:text-2xl lg:text-3xl">
-              Active Tasks
+            <h2 className="todo-headings text-xl md:text-2xl lg:text-3xl">
+              <FaTasks className="w-5 h-5" /> Active Tasks
             </h2>
             {todos?.map((todo, index) => (
               <CardTodo
@@ -50,10 +52,10 @@ const TodoList = ({
             className={`${
               snapshot.isDraggingOver ? "bg-[#ff2600]" : "bg-[#eb6750]"
             }
-            w-full flex flex-col p-4 rounded-lg bg-[#eb6750]`}
+            w-full flex flex-col p-4 rounded-lg bg-red-500`}
           >
-            <h2 className="todo-headings sm:text-xl md:text-2xl lg:text-3xl">
-              Completed Tasks
+            <h2 className="todo-headings text-xl md:text-2xl lg:text-3xl">
+              <BsFillBookmarkCheckFill className="w-5 h-5" /> Completed Tasks
             </h2>
             {completedTodos?.map((todo, index) => (
               <CardTodo

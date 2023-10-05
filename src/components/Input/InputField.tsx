@@ -23,7 +23,7 @@ const InputField = ({ todo, setTodo, handleAdd }: Props) => {
         ref={inputRef}
         placeholder="Enter a task"
         onChange={(e) => setTodo(e.target.value)}
-        className="w-full relative rounded-full py-5 px-7 text-2xl border-none transition-all shadow-md focus:shadow-2xl focus:outline-none"
+        className="w-full relative rounded-full py-5 px-7 text-2xl border-none transition-all shadow-md focus:shadow-2xl focus:outline-none focus:backdrop-blur-3xl"
       />
       <button
         type="submit"
